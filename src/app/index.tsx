@@ -1,15 +1,13 @@
+/** @format */
+
 import { Text, View } from "react-native";
+import OnboardingStart from "../components/generic/onboarding-start";
+import { styles } from "../themes/styles";
 
 export default function Index() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
-  );
+	return (
+		<View style={styles.generalContainer}>
+			<OnboardingStart />
+		</View>
+	);
 }
