@@ -2,12 +2,14 @@
 
 import { fontFamily, fontWeightNames } from "@/src/constants";
 import { FontWeightName } from "@/src/types";
+import { Platform } from "react-native";
 
 const getFontVariantName = (size: FontWeightName) => {
 	const variantSizeNumber = (fontWeightNames.indexOf(size) + 1) * 100;
-	const variantName = `${fontFamily}_${variantSizeNumber}${size}`;
+	const androidVariantName = `${fontFamily}_${variantSizeNumber}${size}`;
+	const iOSVariantName = `${fontFamily}_${size}`;
 
-	return variantName;
+	return Platform.OS === "android" ? androidVariantName : iOSVariantName;
 };
 
 const capitalizeFirstLetter = (string: string) => {

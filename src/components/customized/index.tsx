@@ -1,19 +1,35 @@
 /** @format */
 
-import { useEffect, useState } from "react";
-import { Text, TextProps, StyleProp } from "react-native";
+import { getFontVariantName } from "@/src/api/helper-functions";
+import { FontWeightName } from "@/src/types";
+import { StyleProp, Text, TextProps, TextStyle } from "react-native";
+import { Image, ImageProps } from "expo-image";
 
 type AppTextProps = TextProps & {
-	fontFamily: FontVariant;
-	style?: StyleProp<Text>;
+	fontWeight: FontWeightName;
+	style?: StyleProp<TextStyle>;
 };
 
 function AppText({ fontWeight, style, children, ...rest }: AppTextProps) {
 	return (
-		<Text style={[style]} {...rest}>
+		<Text
+			style={[
+				style,
+				{
+					fontFamily: getFontVariantName(fontWeight),
+					fontWeight: fontWeight.toLowerCase(), // TODO: remove in production
+				},
+			]}
+			{...rest}>
 			{children}
 		</Text>
 	);
 }
 
-export { AppText };
+type AppImageProps = ImageProps;
+
+function AppImage({ source, ...rest }: AppImageProps) {
+	return <Image source={source} {...rest} />;
+}
+
+export { AppText, AppImage };
